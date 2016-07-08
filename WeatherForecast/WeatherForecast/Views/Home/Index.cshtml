@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Search for weather forecasts by city name</h2>
+</div>
+
+@using (Html.BeginForm("Redirect", "Home"))
+{
+    <input type="text" name="city" />
+    <select name="count">
+        <option value="8">Day forecast</option>
+        <option value="3">3 Days forecast</option>
+        <option value="7">Week forecast</option>
+    </select>
+    <input type="submit" value="Search" />
+    <br />
+}

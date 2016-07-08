@@ -1,0 +1,72 @@
+﻿@model WeatherForecast.Models.DayModel
+
+@{
+    ViewBag.Title = "SearchForecast";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hourly weather forecast for day</h2>
+<p>
+
+</p>
+<table class="table table-bordered">
+    <tr>
+        <td>City</td>
+        <td>@Model.city.name</td>
+        <td>Country</td>
+        <td>@Model.city.country</td>
+    </tr>
+    <tr>
+        <td>Coordinates</td>
+        <td>[@Model.city.coord.lat @Model.city.coord.lon]</td>
+    </tr>
+
+    @foreach (var item in Model.list)
+    {
+        <tr></tr>
+        <tr>
+            <td>Time of data forecasted</td>
+            <td>Temperatre</td>
+            <td>Min daily temperature</td>
+            <td>Max daily temperature</td>
+        </tr>
+        <tr>
+            <td>@item.date</td>
+            <td>@item.main.temp</td>
+            <td>@item.main.temp_min</td>
+            <td>@item.main.temp_max</td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td><img src="~/Content/img/@item.weather.First().icon-.ico" height="64" ></td>
+            <td>@item.weather.First().description</td>            
+            <td>Cloudiness</td>
+            <td>@item.clouds</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Humidity</td>
+            <td>@item.main.humidity%</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Atmospheric pressure</td>
+            <td>@item.main.pressure</td>
+
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Wind speed</td>
+            <td>@item.wind.speed</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Wind direction</td>
+            <td>@item.wind.deg</td>
+        </tr>
+    }
+</table>
