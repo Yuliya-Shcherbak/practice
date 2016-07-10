@@ -11,7 +11,18 @@ namespace WeatherForecast.Models
         public double message { get; set; }
         public DayCity city { get; set; }
         public int cnt { get; set; }
-        public List<DayList> list { get; set; }        
+        public List<DayList> list { get; set; }
+        private IDayManager dayManager;
+
+        public DayModel(IDayManager model)
+        {
+            dayManager = model;
+        }
+
+        public DayModel SearchForecast(string city)
+        {
+            return dayManager.GetDayForecast(city);
+        }
     }
 
     public class DayCity

@@ -10,6 +10,13 @@ namespace WeatherForecast.Controllers
 {
     public class DayForecastController : Controller
     {
+        private IDayManager dayManager;
+
+        public DayForecastController(IDayManager manager)
+        {
+            dayManager = manager;
+        }
+
         // GET: /DayForecast/Index
         public ActionResult Index()
         {
@@ -19,8 +26,8 @@ namespace WeatherForecast.Controllers
         // GET: /DayForecast/SearchForecast
         public ActionResult SearchForecast(string city)
         {
-            DayModel list = DayForecastManager.GetDayForecast(city);
-            return View(list);
+            DayModel list = new DayModel(dayManager);
+            return View(list.SearchForecast(city));
         }
     }
 }

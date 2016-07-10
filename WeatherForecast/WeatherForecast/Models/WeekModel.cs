@@ -12,6 +12,17 @@ namespace WeatherForecast.Models
         public double message { get; set; }
         public int cnt { get; set; }
         public List<WeekList> list { get; set; }
+        private IWeekManager weekManager;
+
+        public WeekModel(IWeekManager manager)
+        {
+            weekManager = manager;
+        }
+
+        public WeekModel SearchForecast(int count, string city)
+        {
+            return weekManager.GetWeekForecast(count, city);
+        }
     }
 
     public class WeekCity

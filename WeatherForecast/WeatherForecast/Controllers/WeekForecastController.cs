@@ -10,6 +10,12 @@ namespace WeatherForecast.Controllers
 {
     public class WeekForecastController : Controller
     {
+        private IWeekManager weekManager;
+
+        public WeekForecastController(IWeekManager manager)
+        {
+            weekManager = manager;
+        }
 
         // GET: /WeekForecast/Index
         public ActionResult Index()
@@ -20,8 +26,8 @@ namespace WeatherForecast.Controllers
         //GET: /WeekForecast/SearchForecast
         public ActionResult SearchForecast(string city, int count)
         {
-            WeekModel list = WeekForecastManager.GetWeekForecast(count, city);
-            return View(list); 
+            WeekModel list = new WeekModel(weekManager);
+            return View(list.SearchForecast(count, city)); 
         }
     }
 }
