@@ -138,6 +138,7 @@
     <Compile Include="Manager\DayForecastManager.cs" />
     <Compile Include="Manager\WeekForecastManager.cs" />
     <Compile Include="Models\DayModel.cs" />
+    <Compile Include="Models\GeneralClasses.cs" />
     <Compile Include="Models\IDayManager.cs" />
     <Compile Include="Models\IWeekManager.cs" />
     <Compile Include="Models\WeekModel.cs" />

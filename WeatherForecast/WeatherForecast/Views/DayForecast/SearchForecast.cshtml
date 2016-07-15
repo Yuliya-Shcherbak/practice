@@ -15,58 +15,31 @@
         <td>@Model.city.name</td>
         <td>Country</td>
         <td>@Model.city.country</td>
+        <td>Coordinates</td>
+        <td>[@Model.city.coord.lat</td>
+        <td>@Model.city.coord.lon]</td>
     </tr>
     <tr>
-        <td>Coordinates</td>
-        <td>[@Model.city.coord.lat @Model.city.coord.lon]</td>
+        <td>Time of data forecasted</td>
+        <td></td>
+        <td></td>
+        <td>Temperatre</td>
+        <td>Atmospheric pressure</td>
+        <td>Humidity</td>
+        <td>Wind speed</td>
+        <td>Cloudiness</td>
     </tr>
-
     @foreach (var item in Model.list)
     {
-        <tr></tr>
         <tr>
-            <td>Time of data forecasted</td>
-            <td>Temperatre</td>
-            <td>Min daily temperature</td>
-            <td>Max daily temperature</td>
-        </tr>
-        <tr>
-            <td>@item.date</td>
+            <td>@item.date.ToShortTimeString()</td>
+            <td><img src="~/Content/img/@item.weather.First().icon-.ico" height="64"></td>
+            <td>@item.weather.First().description</td>
             <td>@item.main.temp</td>
-            <td>@item.main.temp_min</td>
-            <td>@item.main.temp_max</td>
-        </tr>
-        <tr></tr>
-        <tr>
-            <td><img src="~/Content/img/@item.weather.First().icon-.ico" height="64" ></td>
-            <td>@item.weather.First().description</td>            
-            <td>Cloudiness</td>
-            <td>@item.clouds</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Humidity</td>
+            <td>@item.main.pressure hpa</td>
             <td>@item.main.humidity%</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Atmospheric pressure</td>
-            <td>@item.main.pressure</td>
-
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Wind speed</td>
-            <td>@item.wind.speed</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Wind direction</td>
-            <td>@item.wind.deg</td>
+            <td>@item.wind.speed m/s Direction:@item.wind.deg</td>
+            <td>@item.clouds.all%</td>
         </tr>
     }
 </table>

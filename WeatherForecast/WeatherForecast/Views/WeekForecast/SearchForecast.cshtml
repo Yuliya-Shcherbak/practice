@@ -6,9 +6,8 @@
 }
 
 <h2>Weather forecast for @Model.cnt days</h2>
-
 <p>
-   
+
 </p>
 <table class="table table-bordered">
     <tr>
@@ -16,57 +15,51 @@
         <td>@Model.city.name</td>
         <td>Country</td>
         <td>@Model.city.country</td>
-    </tr>
-    <tr>
         <td>Coordinates</td>
-        <td>[@Model.city.coord.lat  @Model.city.coord.lon]</td>
+        <td>[@Model.city.coord.lat @Model.city.coord.lon]</td>
     </tr>
 
     @foreach (var item in Model.list)
     {
-        <tr><td></td></tr>
-        <tr>
-            <td>Time of data forecasted</td>
-            <td>Min daily temperature</td>
-            <td>Max daily temperature</td>
-            <td>@item.weather.First().description</td>
+        <tr style="background-color:silver">
+            <td>@item.date.ToShortDateString()</td>
             <td><img src="~/Content/img/@item.weather.First().icon-.ico" height="64"></td>
+            <td>@item.weather.First().description</td>
+            <td style="color:blue;">@item.temp.min C</td>
+            <td style="color:red;">@item.temp.max C</td>
+            <td></td>
         </tr>
-        <tr>
-            <td>@item.date</td>
-            <td>@item.temp.min</td>
-            <td>@item.temp.max</td>
-            <td>Cloudiness</td>
-            <td>@item.clouds</td>
-        </tr>
-        <tr></tr>
         <tr>
             <td>Morning temperature</td>
-            <td>@item.temp.morn</td>
-            <td></td>
+            <td>@item.temp.morn C</td>
+            <td>Humidity</td>
             <td>Atmospheric pressure</td>
-            <td>@item.pressure</td>
+            <td>Wind speed</td>
+            <td>Cloudiness</td>
         </tr>
         <tr>
             <td>Day temperature</td>
-            <td>@item.temp.day</td>
-            <td></td>
-            <td>Humidity</td>
+            <td>@item.temp.day C</td>
             <td>@item.humidity%</td>
+            <td>@item.pressure hpa</td>
+            <td>@item.speed m/s</td>
+            <td>@item.clouds%</td>
         </tr>
         <tr>
             <td>Evening temperature</td>
-            <td>@item.temp.eve</td>
+            <td>@item.temp.eve C</td>
             <td></td>
-            <td>Wind speed</td>
-            <td>@item.speed</td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td>Night temperature</td>
-            <td>@item.temp.night</td>
+            <td>@item.temp.night C</td>
             <td></td>
-            <td>Wind direction</td>
-            <td>@item.deg</td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
     }
 </table>
