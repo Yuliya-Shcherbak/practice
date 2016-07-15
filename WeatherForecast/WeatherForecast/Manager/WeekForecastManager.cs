@@ -24,6 +24,7 @@ namespace WeatherForecast.Manager
                 {
                     item.date = new DateTime(1970, 1, 1).AddSeconds(item.dt);
                 }
+                Manager.AddStatistics(result);
                 return result;
             }            
         }

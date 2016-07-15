@@ -39,6 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
@@ -128,6 +136,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Context\WeatherForecastContext.cs" />
     <Compile Include="Controllers\DayForecastController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WeekForecastController.cs" />
@@ -136,6 +145,7 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Manager\DayForecastManager.cs" />
+    <Compile Include="Manager\Manager.cs" />
     <Compile Include="Manager\WeekForecastManager.cs" />
     <Compile Include="Models\DayModel.cs" />
     <Compile Include="Models\GeneralClasses.cs" />
@@ -181,6 +191,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\WeekForecast\SearchForecast.cshtml" />
     <Content Include="Views\DayForecast\SearchForecast.cshtml" />
+    <Content Include="Views\Home\EditorTemplates\Favourite.cshtml" />
+    <Content Include="Views\Home\EditorTemplates\WeekModel.cshtml" />
+    <Content Include="Views\Home\Favourites.cshtml" />
+    <Content Include="Views\Home\ShowStatistics.cshtml" />
+    <Content Include="Views\Home\Statistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

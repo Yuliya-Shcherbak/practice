@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeatherForecast.Models
 {
     public class WeekModel
     {
+        public int WeekModelID { get; set; }
         public City city { get; set; }
+        [NotMapped]
         public string cod { get; set; }
+        [NotMapped]
         public double message { get; set; }
         public int cnt { get; set; }
         public List<WeekList> list { get; set; }
         private IWeekManager weekManager;
-
+            
         public WeekModel(IWeekManager manager)
         {
             weekManager = manager;
         }
+
+        public WeekModel() { }
 
         public WeekModel SearchForecast(int count, string city)
         {
@@ -27,7 +33,8 @@ namespace WeatherForecast.Models
 
     public class WeekList
     {
-
+        public int WeekListID { get; set; }
+        [NotMapped]
         public int dt { get; set; }
         public DateTime date { get; set; }
         public Temp temp { get; set; }

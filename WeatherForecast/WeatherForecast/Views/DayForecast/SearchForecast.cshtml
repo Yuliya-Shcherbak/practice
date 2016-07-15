@@ -7,7 +7,9 @@
 
 <h2>Hourly weather forecast for day</h2>
 <p>
-
+    <button type="button" class="btn btn-info">
+        @Html.ActionLink("Add city to favourites", "AddFavourite", "Home", new { name = Model.city.name, id = Model.city.id }, null)
+    </button>
 </p>
 <table class="table table-bordered">
     <tr>

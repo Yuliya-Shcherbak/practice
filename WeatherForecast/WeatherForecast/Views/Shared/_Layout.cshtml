@@ -71,7 +71,17 @@
                             <li>@Html.ActionLink("for a three days", "SearchForecast", "WeekForecast", new { city = "Odessa", count = 3 }, null)</li>
                             <li>@Html.ActionLink("for a week", "SearchForecast", "WeekForecast", new { city = "Odessa", count = 7 }, null)</li>
                         </ul>
-                    </li>                    
+                    </li> 
+                    <li class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            Favourites
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Edit favourites", "Favourites", "Home", new { city = "Kiev", count = 3 }, null)</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Statistics", "Statistics", "Home")</li>                   
                 </ul>
             </div>
         </div>

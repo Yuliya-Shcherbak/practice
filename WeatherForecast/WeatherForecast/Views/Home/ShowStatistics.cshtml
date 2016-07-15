@@ -1,0 +1,21 @@
+﻿@model List<WeatherForecast.Models.WeekModel>
+
+@{
+    ViewBag.Title = "ShowStatistics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Statistics @Model.FirstOrDefault().city.name</h2>
+<table class="table table-bordered">
+    <tr>
+        <td>Time of data forecasted</td>
+        <td></td>
+        <td></td>
+        <td>Temperatre</td>
+        <td>Atmospheric pressure</td>
+        <td>Humidity</td>
+        <td>Wind speed</td>
+        <td>Cloudiness</td>
+    </tr>
+    @Html.EditorFor(x => Model)
+</table>

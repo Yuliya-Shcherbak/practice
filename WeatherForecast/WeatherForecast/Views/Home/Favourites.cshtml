@@ -1,0 +1,12 @@
+﻿@using (Html.BeginForm("UpdateFavourite", "Home"))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <table>
+        <tr>
+            <th>Name</th>
+            <td>Delete</td>
+        </tr>
+        @Html.EditorFor(x => Model)
+    </table>
+    <input type="submit" value="Save changes" />
+}

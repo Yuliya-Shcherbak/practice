@@ -22,8 +22,9 @@ namespace WeatherForecast.Manager
                 var result = JsonConvert.DeserializeObject<DayModel>(rd.ReadToEnd());
                 foreach (var item in result.list)
                 {
-                    item.date = new DateTime(1970, 1, 1).AddSeconds(item.dt);
+                    item.date = Convert.ToDateTime(item.dt_txt);
                 }
+                Manager.AddStatistics(Manager.ConvertModel(result));
                 return result;
             }            
         }

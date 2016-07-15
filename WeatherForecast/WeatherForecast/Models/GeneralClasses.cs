@@ -2,18 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeatherForecast.Models
 {
+    public class Favourite
+    {
+        public int ID { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public bool IsDeleted { get; set; }
+    }
+
     public class City
     {
+        [Key]
         public int CityID { get; set; }
         public int id { get; set; }
         public string name { get; set; }
+        [NotMapped]
         public Coord coord { get; set; }
         public string country { get; set; }
         public int population { get; set; }
-
+        [NotMapped]
         public Sys sys { get; set; }
     }
     public class Coord
@@ -36,6 +48,7 @@ namespace WeatherForecast.Models
 
     public class Temp
     {
+        public int TempID { get; set; }
         public double day { get; set; }
         public double min { get; set; }
         public double max { get; set; }
@@ -46,6 +59,7 @@ namespace WeatherForecast.Models
 
     public class Weather
     {
+         [Key]
         public int id { get; set; }
         public string main { get; set; }
         public string description { get; set; }
