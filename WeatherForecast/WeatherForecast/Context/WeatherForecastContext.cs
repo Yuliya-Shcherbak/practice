@@ -13,12 +13,8 @@ namespace WeatherForecast.Context
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
-        public DbSet<Favourite> Favourites { get; set; }
+        public DbSet<FavouritesModel> Favourites { get; set; }
 
-        public DbSet<WeekModel> Statisctics { get; set; }
-        public DbSet<WeekList> Lists { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Temp> Temperatures { get; set; }
-        public DbSet<Weather> Weathers { get; set; }
+        public DbSet<StatisticsModel> Statisctics { get; set; }
     }
 }

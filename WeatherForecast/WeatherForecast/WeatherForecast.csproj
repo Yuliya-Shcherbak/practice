@@ -143,14 +143,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\EntityHelper.cs" />
+    <Compile Include="Helper\ManagersHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Manager\DayForecastManager.cs" />
-    <Compile Include="Manager\Manager.cs" />
     <Compile Include="Manager\WeekForecastManager.cs" />
     <Compile Include="Models\DayModel.cs" />
+    <Compile Include="Models\FavouritesModel.cs" />
     <Compile Include="Models\GeneralClasses.cs" />
     <Compile Include="Models\IDayManager.cs" />
     <Compile Include="Models\IWeekManager.cs" />
+    <Compile Include="Models\StatisticsModel.cs" />
     <Compile Include="Models\WeekModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -191,8 +194,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\WeekForecast\SearchForecast.cshtml" />
     <Content Include="Views\DayForecast\SearchForecast.cshtml" />
-    <Content Include="Views\Home\EditorTemplates\Favourite.cshtml" />
-    <Content Include="Views\Home\EditorTemplates\WeekModel.cshtml" />
+    <Content Include="Views\Home\EditorTemplates\FavouritesModel.cshtml" />
+    <Content Include="Views\Home\EditorTemplates\StatisticsModel.cshtml" />
     <Content Include="Views\Home\Favourites.cshtml" />
     <Content Include="Views\Home\ShowStatistics.cshtml" />
     <Content Include="Views\Home\Statistics.cshtml" />

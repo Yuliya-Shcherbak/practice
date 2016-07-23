@@ -7,14 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeatherForecast.Models
 {
-    public class Favourite
-    {
-        public int ID { get; set; }
-        [Required]
-        public string Name { get; set; }
-        public bool IsDeleted { get; set; }
-    }
-
     public class City
     {
         [Key]

@@ -1,0 +1,13 @@
+﻿@model WeatherForecast.Models.StatisticsModel
+
+<tr>
+    <td>@Model.date.ToShortTimeString()</td>
+    <td><img src="~/Content/img/@Model.icon-.ico" height="64"></td>
+    <td>@Model.description</td>
+    <td>@Model.temp_max</td>
+    <td>@Model.temp_min</td>
+    <td>@Model.pressure hpa</td>
+    <td>@Model.humidity%</td>
+    <td>@Model.windSpeed m/s Direction:@Model.windDirection</td>
+    <td>@Model.cloudiness%</td>
+</tr>

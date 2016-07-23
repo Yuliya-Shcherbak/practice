@@ -5,6 +5,7 @@ using System.Web;
 using System.Net;
 using Newtonsoft.Json;
 using WeatherForecast.Models;
+using WeatherForecast.Helper;
 
 namespace WeatherForecast.Manager
 {
@@ -24,7 +25,7 @@ namespace WeatherForecast.Manager
                 {
                     item.date = new DateTime(1970, 1, 1).AddSeconds(item.dt);
                 }
-                Manager.AddStatistics(result);
+                EntityHelper.AddStatistics(ManagersHelper.ConvertWeekModel(result));
                 return result;
             }            
         }

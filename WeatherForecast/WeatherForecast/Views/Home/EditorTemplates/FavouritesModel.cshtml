@@ -1,0 +1,8 @@
+﻿@model WeatherForecast.Models.FavouritesModel
+<tr>
+    <td>
+        @Html.HiddenFor(x => Model.ID)
+        @Html.TextBoxFor(x => Model.Name)
+    </td>
+    <td>@Html.CheckBoxFor(x => Model.IsDeleted)</td>
+</tr>
