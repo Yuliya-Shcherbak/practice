@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace WeatherForecast.Models
@@ -19,7 +20,7 @@ namespace WeatherForecast.Models
             dayManager = model;
         }
 
-        public DayModel SearchForecast(string city)
+        public Task<DayModel> SearchForecast(string city)
         {
             return dayManager.GetDayForecast(city);
         }

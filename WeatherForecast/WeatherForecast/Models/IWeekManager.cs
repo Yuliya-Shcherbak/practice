@@ -8,6 +8,6 @@ namespace WeatherForecast.Models
 {
     public interface IWeekManager
     {
-        WeekModel GetWeekForecast(int count, string city);
+        Task<WeekModel> GetWeekForecast(int count, string city);
     }
 }

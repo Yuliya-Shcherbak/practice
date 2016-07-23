@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WeatherForecast.Helper;
@@ -46,28 +47,28 @@ namespace WeatherForecast.Controllers
         }
 
         //GET /Home/Favourites
-        public ActionResult Favourites()
+        public async Task<ActionResult> Favourites()
         {
-            List<FavouritesModel> list = EntityHelper.GetFavourites();
+            List<FavouritesModel> list = await EntityHelper.GetFavourites();
             return View(list);
         }
 
         //GET /Home/AddFavourite
-        public ActionResult AddFavourite(string name, int id)
+        public async Task<ActionResult> AddFavourite(string name, int id)
         {
-            EntityHelper.AddFavourite(name, id);
+            await EntityHelper.AddFavourite(name, id);
             return RedirectToAction("Favourites"); ;
         }
 
         //GET /Home/UpdateFavourite
-        public ActionResult UpdateFavourite(List<FavouritesModel> list)
+        public async Task<ActionResult> UpdateFavourite(List<FavouritesModel> list)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    EntityHelper.DeleteFavorite(list.Where(x => x.IsDeleted == true).ToList());
-                    EntityHelper.UpdateFavourite(list.Where(x => x.IsDeleted != true).ToList());
+                    await EntityHelper.DeleteFavorite(list.Where(x => x.IsDeleted == true).ToList());
+                    await EntityHelper.UpdateFavourite(list.Where(x => x.IsDeleted != true).ToList());
                     return RedirectToAction("Favourites");
                 }
                 catch
@@ -79,15 +80,15 @@ namespace WeatherForecast.Controllers
             return View();
         }
 
-        public ActionResult Statistics()
+        public async Task<ActionResult> Statistics()
         {
-            List<City> list = EntityHelper.GetCitiesForStatisticList();
+            List<City> list = await EntityHelper.GetCitiesForStatisticList();
             return View(list);
         }
 
-        public ActionResult ShowStatistics(int id)
+        public async Task<ActionResult> ShowStatistics(int id)
         {
-            List<StatisticsModel> list = EntityHelper.ShowCityStatistics(id);
+            List<StatisticsModel> list =await EntityHelper.ShowCityStatistics(id);
             return View(list);
         }
     }

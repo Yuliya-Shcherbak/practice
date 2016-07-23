@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WeatherForecast.Models;
 using WeatherForecast.Manager;
+using System.Threading.Tasks;
 
 namespace WeatherForecast.Controllers
 {
@@ -24,10 +25,10 @@ namespace WeatherForecast.Controllers
         }
 
         //GET: /WeekForecast/SearchForecast
-        public ActionResult SearchForecast(string city, int count)
+        public async Task<ActionResult> SearchForecast(string city, int count)
         {
             WeekModel list = new WeekModel(weekManager);
-            return View(list.SearchForecast(count, city)); 
+            return View(await list.SearchForecast(count, city)); 
         }
     }
 }

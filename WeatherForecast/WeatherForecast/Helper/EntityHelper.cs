@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
+using System.Threading.Tasks;
 using System.Web;
 using WeatherForecast.Context;
 using WeatherForecast.Models;
@@ -9,24 +11,24 @@ namespace WeatherForecast.Helper
 {
     public class EntityHelper
     {
-        public static void AddStatistics(List<StatisticsModel> model)
+        public static async Task AddStatistics(List<StatisticsModel> model)
         {
             using (WeatherForecastContext context = new WeatherForecastContext())
             {
                 foreach (var _model in model)
                 {
                     context.Statisctics.Add(_model);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
             }
         }
 
 
-        public static List<City> GetCitiesForStatisticList()
+        public static async Task<List<City>> GetCitiesForStatisticList()
         {
             using (WeatherForecastContext context = new WeatherForecastContext())
             {
-                var list = context.Statisctics.GroupBy(x => x.CityID).ToList() ;
+                var list = await context.Statisctics.GroupBy(x => x.CityID).ToListAsync() ;
                 IEnumerable<StatisticsModel> temp = list.Select(x => x.First());
                 List<City> cities = new List<City>();
                 foreach (StatisticsModel _model in temp)
@@ -42,12 +44,12 @@ namespace WeatherForecast.Helper
             }
         }
 
-        public static List<StatisticsModel> ShowCityStatistics(int id)
+        public static async Task<List<StatisticsModel>> ShowCityStatistics(int id)
         {
             List<StatisticsModel> list = new List<StatisticsModel>();
             using (WeatherForecastContext context = new WeatherForecastContext())
             {
-                var result = context.Statisctics.Where(x => x.CityID == id).Select(x => x).ToList();
+                var result = await context.Statisctics.Where(x => x.CityID == id).Select(x => x).ToListAsync();
                 foreach (var item in result)
                 {
                     list.Add(item);
@@ -57,16 +59,16 @@ namespace WeatherForecast.Helper
         }
         
 
-        public static List<FavouritesModel> GetFavourites()
+        public static async Task<List<FavouritesModel>> GetFavourites()
         {
             using (WeatherForecastContext context = new WeatherForecastContext())
             {
-                var result = context.Favourites.ToList();
+                var result = await context.Favourites.ToListAsync();
                 return result;
             }
         }
 
-        public static void AddFavourite(string name, int id)
+        public static async Task AddFavourite(string name, int id)
         {
             using (WeatherForecastContext context = new WeatherForecastContext())
             {
@@ -77,34 +79,34 @@ namespace WeatherForecast.Helper
                     IsDeleted = false
                 };
                 context.Favourites.Add(city);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
-        public static void DeleteFavorite(List<FavouritesModel> list)
+        public static async Task DeleteFavorite(List<FavouritesModel> list)
         {
             using (WeatherForecastContext context = new WeatherForecastContext())
             {
                 foreach (var city in list)
                 {
-                    FavouritesModel _city = context.Favourites.SingleOrDefault(x => x.ID == city.ID);
+                    FavouritesModel _city = await context.Favourites.SingleOrDefaultAsync(x => x.ID == city.ID);
                     context.Favourites.Remove(_city);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 }
             }
         }
 
-        public static void UpdateFavourite(List<FavouritesModel> list)
+        public static async Task UpdateFavourite(List<FavouritesModel> list)
         {
             using (WeatherForecastContext context = new WeatherForecastContext())
             {
                 foreach (var city in list)
                 {
-                    var fav = context.Favourites.Where(x => x.ID == city.ID).SingleOrDefault();
+                    var fav = await context.Favourites.Where(x => x.ID == city.ID).SingleOrDefaultAsync();
                     if (city.Name != null)
                         fav.Name = city.Name;
                 }
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
     }

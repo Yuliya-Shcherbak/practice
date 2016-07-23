@@ -6,26 +6,27 @@ using System.Net;
 using Newtonsoft.Json;
 using WeatherForecast.Models;
 using WeatherForecast.Helper;
+using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace WeatherForecast.Manager
 {
     public class DayForecastManager : IDayManager
     {
-        public DayModel GetDayForecast(string city)
+        public async Task<DayModel> GetDayForecast(string city)
         {
             string path = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&cnt=8&units=metric&APPID=74558106fbbccd5beb5db014a50cfe6a";
-            
-            WebRequest request = (HttpWebRequest)WebRequest.Create(path);
 
-            using (WebResponse response = request.GetResponse())
-            using (System.IO.StreamReader rd = new System.IO.StreamReader(response.GetResponseStream()))
+            using (HttpClient client = new HttpClient())
             {
-                var result = JsonConvert.DeserializeObject<DayModel>(rd.ReadToEnd());
+                client.BaseAddress = new Uri(path);
+                var response = await client.GetStringAsync(path);
+                var result = JsonConvert.DeserializeObject<DayModel>(response);
                 foreach (var item in result.list)
                 {
                     item.date = Convert.ToDateTime(item.dt_txt);
                 }
-                EntityHelper.AddStatistics(ManagersHelper.ConvertDayModel(result));
+                await EntityHelper.AddStatistics(ManagersHelper.ConvertDayModel(result));
                 return result;
             }            
         }

@@ -5,10 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using WeatherForecast.Models;
 using WeatherForecast.Manager;
+using System.Threading.Tasks;
 
 namespace WeatherForecast.Controllers
 {
-    public class DayForecastController : Controller
+    public class DayForecastController : AsyncController
     {
         private IDayManager dayManager;
 
@@ -24,10 +25,10 @@ namespace WeatherForecast.Controllers
         }
 
         // GET: /DayForecast/SearchForecast
-        public ActionResult SearchForecast(string city)
+        public async Task<ActionResult> SearchForecast(string city)
         {
             DayModel list = new DayModel(dayManager);
-            return View(list.SearchForecast(city));
+            return View(await list.SearchForecast(city));
         }
     }
 }

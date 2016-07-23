@@ -6,26 +6,27 @@ using System.Net;
 using Newtonsoft.Json;
 using WeatherForecast.Models;
 using WeatherForecast.Helper;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace WeatherForecast.Manager
 {
     public class WeekForecastManager : IWeekManager
     {
-        public WeekModel GetWeekForecast(int count, string city)
+        public async Task<WeekModel> GetWeekForecast(int count, string city)
         {
             string path = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&cnt=" + count + "&units=metric&APPID=74558106fbbccd5beb5db014a50cfe6a";
-            
-            WebRequest request = (HttpWebRequest)WebRequest.Create(path);
 
-            using (WebResponse response = request.GetResponse())
-            using (System.IO.StreamReader rd = new System.IO.StreamReader(response.GetResponseStream()))
+            using (HttpClient client = new HttpClient())
             {
-                var result = JsonConvert.DeserializeObject<WeekModel>(rd.ReadToEnd());
+                client.BaseAddress = new Uri(path);
+                var response = await client.GetStringAsync(path);
+                var result = JsonConvert.DeserializeObject<WeekModel>(response);                
                 foreach(var item in result.list)
                 {
                     item.date = new DateTime(1970, 1, 1).AddSeconds(item.dt);
                 }
-                EntityHelper.AddStatistics(ManagersHelper.ConvertWeekModel(result));
+                await EntityHelper.AddStatistics(ManagersHelper.ConvertWeekModel(result));
                 return result;
             }            
         }

@@ -8,6 +8,6 @@ namespace WeatherForecast.Models
 {
     public interface IDayManager
     {
-        DayModel GetDayForecast(string city);
+        Task<DayModel> GetDayForecast(string city);
     }
 }

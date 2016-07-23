@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading.Tasks;
 
 namespace WeatherForecast.Models
 {
@@ -25,9 +26,9 @@ namespace WeatherForecast.Models
 
         public WeekModel() { }
 
-        public WeekModel SearchForecast(int count, string city)
+        public async Task<WeekModel> SearchForecast(int count, string city)
         {
-            return weekManager.GetWeekForecast(count, city);
+            return await weekManager.GetWeekForecast(count, city);
         }
     }
 
